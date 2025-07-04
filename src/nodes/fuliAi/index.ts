@@ -10,22 +10,7 @@ export const FULIAINodeRegistry: FlowNodeRegistry = {
   executor: async (node, context) => {
     console.log(node,'node');
     console.log(context);
-    const { promot, day, text } = node.data.inputsValues;
-    try {
-        const response = await api.post('/fuli-ai/process', {
-          promot: promot.content,
-          day: Number(day.content),
-          text: text.content
-        });
-        return {
-          outputs: {
-            result: response.data.result
-          }
-        };
-      } catch (error) {
-        context.logger.error('FuliAI API error:', error);
-        throw new Error('Failed to process FuliAI request');
-      }
+    
   },
   type: WorkflowNodeType.FuliAi,
   info: {
